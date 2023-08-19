@@ -52,12 +52,15 @@ void Monster::attack(Player& player)
 	cout << "A " << mName << " attacks you " 
 		<< "with a " << mWeapon.mName << endl;
 
+	Random randomGenerator; // Create an instance of the new Random class
+
 	// Test to see if the monster hit the player.
-	int roll = Random(0, 20);
+	int roll = randomGenerator.getRandomNumber(0, 20);
+	
 	if( roll < (mAccuracy - player.getArmorDeflect()) )
 	{
 		// Generate a damage value based on the weapons range.
-		int damage = Random(mWeapon.mDamageRange);
+		int damage = randomGenerator.getRandomNumber(mWeapon.mDamageRange.mLow, mWeapon.mDamageRange.mHigh);
 
 		// Subtract the player's armor from damage to
 		// simulate armor weakening the attack.  Note that
