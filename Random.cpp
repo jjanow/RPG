@@ -1,16 +1,11 @@
-// Random.cpp
-
 #include "Random.h"
-#include <cstdlib>
 
-// Returns a random number in r.
-int Random(Range r)
-{
-	return r.mLow + rand() % ((r.mHigh + 1) - r.mLow);
+Random::Random() {
+    std::random_device rd; // Obtain a random number from hardware
+    m_rng.seed(rd()); // Seed the Mersenne Twister engine
 }
 
-// Returns a random number in [low, high].
-int Random(int low, int high)
-{
-	return low + rand() % ((high + 1) - low);
+int Random::getRandomNumber(int min, int max) {
+    std::uniform_int_distribution<int> dist(min, max); // Define the distribution
+    return dist(m_rng); // Generate random number within the range
 }
