@@ -8,7 +8,7 @@
 #include "Spell.h"
 #include "HealPotion.h"
 #include "FirePotion.h"
-#include "Getkb.h"
+#include "getkb.h"
 
 using namespace std;
 
@@ -240,14 +240,14 @@ bool Player::attack(Monster& monster)
 	switch( selection )
 	{
 	case '1':
-		roll = Random(0, 20);
+		roll = Random::random(0, 20);
 		totalroll += roll - mWeapon[0].mEnchant;
 
 		cout << "You attack an " << monster.getName() << " with a " << mWeapon[0].mName << endl;
 
 		if( roll < mAccuracy )
 		{
-			int damage = Random(mWeapon[0].mDamageRange);
+			int damage = Random::random(mWeapon[0].mDamageRange.mLow, mWeapon[0].mDamageRange.mHigh);
 
 			int totalDamage = (damage + mWeapon[0].mEnchant) - monster.getArmor();
 
@@ -314,7 +314,7 @@ bool Player::attack(Monster& monster)
 					if (mInventory[x].mName == "Fireball Potion")
 					{
 						mInventory.erase(mInventory.begin()+x);
-						int rnd = Random(6,36);
+						int rnd = Random::random(6,36);
 						cout << "You throw the potion at " << monster.getName() << " and it explodes in a ball of fire! (" << rnd << ")" << endl;
 						monster.takeDamage(rnd);
 						break;
@@ -336,7 +336,7 @@ bool Player::attack(Monster& monster)
 		break;
 	case '4':
 		// 50 % chance of being able to run.
-		roll = Random(1, 4);
+		roll = Random::random(1, 4);
 
 		if( roll > 2 )
 		{
@@ -367,10 +367,10 @@ void Player::levelUp()
 		if (mClassName == "Fighter")
 		{
 			// Increase stats randomly.
-			mAccuracy       += Random(2, 5);
-			mMaxHitPoints   += Random(2, 10);
-			mMaxSpellPoints += Random(2, 4);
-			//mArmor          += Random(2, 4);
+			mAccuracy       += Random::random(2, 5);
+			mMaxHitPoints   += Random::random(2, 10);
+			mMaxSpellPoints += Random::random(2, 4);
+			//mArmor          += Random::random(2, 4);
 
 			// Give player full hitpoints when they level up.
 			mHitPoints = mMaxHitPoints;
@@ -380,10 +380,10 @@ void Player::levelUp()
 		if (mClassName == "Cleric")
 		{
 			// Increase stats randomly.
-			mAccuracy       += Random(2, 4);
-			mMaxHitPoints   += Random(2, 8);
-			mMaxSpellPoints += Random(2, 8);
-			//mArmor          += Random(2, 4);
+			mAccuracy       += Random::random(2, 4);
+			mMaxHitPoints   += Random::random(2, 8);
+			mMaxSpellPoints += Random::random(2, 8);
+			//mArmor          += Random::random(2, 4);
 
 			// Give player full hitpoints when they level up.
 			mHitPoints = mMaxHitPoints;
@@ -393,10 +393,10 @@ void Player::levelUp()
 		if (mClassName == "Thief")
 		{
 			// Increase stats randomly.
-			mAccuracy       += Random(3, 5);
-			mMaxHitPoints   += Random(2, 6);
-			mMaxSpellPoints += Random(2, 6);
-			//mArmor          += Random(1, 3);
+			mAccuracy       += Random::random(3, 5);
+			mMaxHitPoints   += Random::random(2, 6);
+			mMaxSpellPoints += Random::random(2, 6);
+			//mArmor          += Random::random(1, 3);
 
 			// Give player full hitpoints when they level up.
 			mHitPoints = mMaxHitPoints;
@@ -406,10 +406,10 @@ void Player::levelUp()
 		if (mClassName == "Wizard")
 		{
 			// Increase stats randomly.
-			mAccuracy       += Random(1, 3);
-			mMaxHitPoints   += Random(2, 4);
-			mMaxSpellPoints += Random(2, 10);
-			//mArmor          += Random(1, 2);
+			mAccuracy       += Random::random(1, 3);
+			mMaxHitPoints   += Random::random(2, 4);
+			mMaxSpellPoints += Random::random(2, 10);
+			//mArmor          += Random::random(1, 2);
 
 			// Give player full hitpoints when they level up.
 			mHitPoints = mMaxHitPoints;
@@ -520,7 +520,7 @@ void Player::castSpell(int selectSpell, Monster* monster)
 			int dmg = 0;
 			for (int x = 0; x < mLevel; x++)
 			{
-				dmg += Random(mFireball.mDamageRange.mLow, mFireball.mDamageRange.mHigh);
+				dmg += Random::random(mFireball.mDamageRange.mLow, mFireball.mDamageRange.mHigh);
 			}
 			monster->takeDamage(dmg);
 			mSpellPoints -= mFireball.mMagicPointsRequired;
@@ -538,7 +538,7 @@ void Player::castSpell(int selectSpell, Monster* monster)
 			int dmg = 0;
 			for (int x = 0; x < mLevel; x++)
 			{
-				dmg += Random(mMissile.mDamageRange.mLow, mMissile.mDamageRange.mHigh);
+				dmg += Random::random(mMissile.mDamageRange.mLow, mMissile.mDamageRange.mHigh);
 			}
 			monster->takeDamage(dmg);
 			mSpellPoints -= mMissile.mMagicPointsRequired;

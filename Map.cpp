@@ -50,7 +50,7 @@ void Map::movePlayer()
 
 Monster* Map::checkRandomEncounter()
 {
-	int roll = Random(0, 20);
+	int roll = Random::random(0, 20);
 
 	Monster* monster = 0;
 
@@ -61,7 +61,7 @@ Monster* Map::checkRandomEncounter()
 	}
 	else if(roll == 17)
 	{
-		monster = new Monster("Orc", 10, 8, 200, 1, Random(5,10),
+		monster = new Monster("Orc", 10, 8, 200, 1, Random::random(5,10),
 			"Short Sword", 2, 7);
 
 		cout << "You encountered an Orc!" << endl;
@@ -70,7 +70,7 @@ Monster* Map::checkRandomEncounter()
 	}
 	else if(roll == 18)
 	{
-		monster = new Monster("Goblin", 6, 6, 100, 0, Random(1,5),
+		monster = new Monster("Goblin", 6, 6, 100, 0, Random::random(1,5),
 			"Dagger", 1, 5);
 
 		cout << "You encountered a Goblin!" << endl;
@@ -79,7 +79,7 @@ Monster* Map::checkRandomEncounter()
 	}
 	else if(roll == 19)
 	{
-		monster = new Monster("Ogre", 20, 12, 500, 2, Random(10,20),
+		monster = new Monster("Ogre", 20, 12, 500, 2, Random::random(10,20),
 			"Club", 3, 8);
 
 		cout << "You encountered an Ogre!" << endl;
@@ -88,7 +88,7 @@ Monster* Map::checkRandomEncounter()
 	}
 	else if(roll == 20)
 	{
-		monster = new Monster("Orc Lord", 25, 15, 2000, 5, Random(40,70),
+		monster = new Monster("Orc Lord", 25, 15, 2000, 5, Random::random(40,70),
 			"Two Handed Sword", 5, 20);
 
 		cout << "You encountered an Orc Lord!!!" << endl;

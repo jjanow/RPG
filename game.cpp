@@ -8,7 +8,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <conio.h>
 #include "getkb.h"
 
 using namespace std;

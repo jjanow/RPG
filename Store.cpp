@@ -1,10 +1,10 @@
 #include "Store.h"
-#include "Getkb.h"
+#include "getkb.h"
 #include "Player.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>
-#include <conio.h>
+// conio.h removed - using getkb.h for Linux compatibility
 
 using namespace std;
 

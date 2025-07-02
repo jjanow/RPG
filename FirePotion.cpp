@@ -15,6 +15,6 @@ FirePotion::FirePotion(std::string name, std::string desc, std::string material,
 
 int FirePotion::FireDamage(Range damage)
 {
-	int dmg = Random(damage.mLow, damage.mHigh);
+	int dmg = Random::random(damage.mLow, damage.mHigh);
 	return dmg;
 }
